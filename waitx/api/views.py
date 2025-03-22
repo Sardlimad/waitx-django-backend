@@ -1,20 +1,38 @@
-from django.shortcuts import render
+from rest_framework import viewsets
+from .models import Cliente, Localidad, Ruta, Salida, Inscripcion, DetallesPriorizacion, Fallo
+from .serializers import ClienteSerializer, LocalidadSerializer, RutaSerializer, SalidaSerializer, InscripcionSerializer, DetallesPriorizacionSerializer, FalloSerializer
 
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework import status
-from .models import InscripcionPriorizada
-from .serializers import InscripcionPriorizadaSerializer
+# 📌 Vista para Cliente
+class ClienteViewSet(viewsets.ModelViewSet):
+    queryset = Cliente.objects.all()
+    serializer_class = ClienteSerializer
 
-class InscripcionPriorizadaListCreate(APIView):
-    def get(self, request):
-        inscripciones = InscripcionPriorizada.objects.all()
-        serializer = InscripcionPriorizadaSerializer(inscripciones, many=True)
-        return Response(serializer.data)
+# 📌 Vista para Localidad
+class LocalidadViewSet(viewsets.ModelViewSet):
+    queryset = Localidad.objects.all()
+    serializer_class = LocalidadSerializer
 
-    def post(self, request):
-        serializer = InscripcionPriorizadaSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# 📌 Vista para Ruta
+class RutaViewSet(viewsets.ModelViewSet):
+    queryset = Ruta.objects.all()
+    serializer_class = RutaSerializer
+
+# 📌 Vista para Salida
+class SalidaViewSet(viewsets.ModelViewSet):
+    queryset = Salida.objects.all()
+    serializer_class = SalidaSerializer
+
+# 📌 Vista para Inscripción
+class InscripcionViewSet(viewsets.ModelViewSet):
+    queryset = Inscripcion.objects.all()
+    serializer_class = InscripcionSerializer
+
+# 📌 Vista para Detalles Priorización
+class DetallesPriorizacionViewSet(viewsets.ModelViewSet):
+    queryset = DetallesPriorizacion.objects.all()
+    serializer_class = DetallesPriorizacionSerializer
+
+# 📌 Vista para Fallo
+class FalloViewSet(viewsets.ModelViewSet):
+    queryset = Fallo.objects.all()
+    serializer_class = FalloSerializer
