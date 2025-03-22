@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
     # Django REST Framework
     'rest_framework',
+    'drf_yasg',  # Swagger
 ]
 
 REST_FRAMEWORK = {
@@ -57,8 +58,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',
-        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.AllowAny',
     )
 }
 
