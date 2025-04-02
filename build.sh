@@ -9,9 +9,9 @@ echo "Configurando PYTHONPATH..."
 export PYTHONPATH=$PYTHONPATH:$(pwd)
 
 echo "Recolectando archivos estáticos..."
-python manage.py collectstatic --no-input
+python waitx/manage.py collectstatic --no-input
 
 echo "Aplicando migraciones..."
-python manage.py migrate
+python waitx/manage.py migrate
 
 echo "Build completado con éxito!" 

@@ -3,7 +3,7 @@ services:
     name: waitx-backend
     env: python
     buildCommand: "./build.sh"
-    startCommand: "gunicorn wsgi:application --bind 0.0.0.0:$PORT"
+    startCommand: "gunicorn waitx.wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: DJANGO_SECRET_KEY
         generateValue: true
