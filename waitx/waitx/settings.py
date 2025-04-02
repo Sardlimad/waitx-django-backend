@@ -27,6 +27,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# CORS Configuration
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",  # React frontend
+    "http://127.0.0.1:3000",
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
+# Append Slash Configuration
+APPEND_SLASH = False
 
 # Application definition
 
@@ -38,12 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-        # Apps propias
+    # Apps propias
     'api',
 
     # Django REST Framework
     'rest_framework',
     'drf_yasg',  # Swagger
+    'corsheaders',  # CORS
 ]
 
 REST_FRAMEWORK = {
@@ -54,6 +65,7 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.JSONParser',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
     ),
@@ -66,6 +78,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',  # CORS middleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -149,3 +162,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# 📌 Configuración de Email
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # O el servidor SMTP que uses
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'tu-email@gmail.com'  # Reemplazar con tu email
+EMAIL_HOST_PASSWORD = 'tu-contraseña-de-aplicacion'  # Reemplazar con tu contraseña de aplicación
+DEFAULT_FROM_EMAIL = 'tu-email@gmail.com'
+
+# URL del frontend para restablecimiento de contraseña
+FRONTEND_URL = 'http://localhost:3000'  # Ajustar según tu configuración
