@@ -2,11 +2,13 @@
 # exit on error
 set -o errexit
 
-# Instalar dependencias
+echo "Instalando dependencias..."
 pip install -r requirements.txt
 
-# Recolectar archivos estáticos
-python waitx/manage.py collectstatic --no-input
+echo "Recolectando archivos estáticos..."
+python -m waitx.manage collectstatic --no-input
 
-# Aplicar migraciones
-python waitx/manage.py migrate 
+echo "Aplicando migraciones..."
+python -m waitx.manage migrate
+
+echo "Build completado con éxito!" 
