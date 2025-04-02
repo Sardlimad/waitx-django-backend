@@ -3,7 +3,7 @@ services:
     name: waitx-backend
     env: python
     buildCommand: "./build.sh"
-    startCommand: "cd waitx && gunicorn waitx.wsgi:application --bind 0.0.0.0:$PORT"
+    startCommand: "gunicorn wsgi:application --bind 0.0.0.0:$PORT"
     envVars:
       - key: DJANGO_SECRET_KEY
         generateValue: true
@@ -16,4 +16,6 @@ services:
       - key: FRONTEND_URL
         value: "https://waitx-frontend.onrender.com"
       - key: PYTHONPATH
-        value: "/opt/render/project/src" 
+        value: "/opt/render/project/src:/opt/render/project/src/waitx"
+      - key: DJANGO_SETTINGS_MODULE
+        value: "waitx.settings" 

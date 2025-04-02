@@ -6,7 +6,12 @@ import sys
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'waitx.waitx.settings')
+    # Añadir el directorio del proyecto al PYTHONPATH
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    waitx_dir = os.path.join(current_dir, 'waitx')
+    sys.path.insert(0, waitx_dir)
+    
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'waitx.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
