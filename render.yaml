@@ -18,4 +18,4 @@ services:
       - key: PYTHONPATH
         value: "/opt/render/project/src:/opt/render/project/src/waitx"
       - key: DJANGO_SETTINGS_MODULE
-        value: "waitx.settings" 
+        value: "settings" 

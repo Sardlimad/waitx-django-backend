@@ -10,7 +10,7 @@ chmod +x manage.py
 
 echo "Configurando PYTHONPATH..."
 export PYTHONPATH=$PYTHONPATH:$(pwd)
-export DJANGO_SETTINGS_MODULE=waitx.waitx.settings
+export DJANGO_SETTINGS_MODULE=settings
 
 echo "Recolectando archivos estáticos..."
 python manage.py collectstatic --no-input
