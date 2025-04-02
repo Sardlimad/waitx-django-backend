@@ -5,10 +5,13 @@ set -o errexit
 echo "Instalando dependencias..."
 pip install -r requirements.txt
 
+echo "Configurando PYTHONPATH..."
+export PYTHONPATH=$PYTHONPATH:$(pwd)
+
 echo "Recolectando archivos estáticos..."
-python -m waitx.manage collectstatic --no-input
+python manage.py collectstatic --no-input
 
 echo "Aplicando migraciones..."
-python -m waitx.manage migrate
+python manage.py migrate
 
 echo "Build completado con éxito!" 
