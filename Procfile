@@ -1,1 +1,1 @@
-web: PYTHONPATH=$PYTHONPATH:$(pwd) DJANGO_SETTINGS_MODULE=settings gunicorn wsgi:application --bind 0.0.0.0:$PORT 
+web: PYTHONPATH=$PYTHONPATH:$(pwd):$(pwd)/waitx DJANGO_SETTINGS_MODULE=settings gunicorn wsgi:application --bind 0.0.0.0:$PORT 
