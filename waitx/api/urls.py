@@ -17,6 +17,7 @@ from .views import (
     ChangePasswordView,
     ForgotPasswordView,
     ResetPasswordView,
+    UserViewSet,
 )
 
 # 📌 Configurar el router de DRF
@@ -28,6 +29,7 @@ router.register(r'salidas', SalidaViewSet)
 router.register(r'inscripciones', InscripcionViewSet)
 router.register(r'detalles_priorizacion', DetallesPriorizacionViewSet)
 router.register(r'fallos', FalloViewSet)
+router.register(r'usuarios', UserViewSet)
 
 # 📌 URLs de autenticación
 auth_urls = [
